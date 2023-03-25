@@ -49,6 +49,10 @@ suspend fun <T> onHandlingResponseStates(
     }
 }
 
-fun <H> retrofitInterfaceHandler(interfaceHandler: Class<H>): H {
-    return retrofit.create(interfaceHandler) as H
+class RetrofitInterfaceHandler<H>(interfaceHandler: Class<H>) {
+    private var handler = interfaceHandler
+    fun createHandler(): H {
+        return retrofit.create(handler) as H
+    }
+
 }

@@ -17,16 +17,19 @@ class SplashViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + job)
     private val _contactUs = MutableLiveData<SponsersListData?>()
     private val _loading = MutableLiveData(false)
-    private val api = Test2Imp()
+    private val api = TestImp()
+    private val api2 = Test2Imp()
 
 
     val contactUs: LiveData<SponsersListData?> get() = _contactUs
     val loading: LiveData<Boolean> get() = _loading
 
+    var bool = true;
     fun onGettingFromBackEnd() {
         _loading.value = true
         uiScope.launch {
-            _contactUs.value = api.getAllSponsersData().data
+            bool = !bool
+            _contactUs.value = api2.getAllSponsersData().data
             _loading.value = false
         }
 

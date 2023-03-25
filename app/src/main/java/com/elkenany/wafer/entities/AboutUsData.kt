@@ -1,5 +1,6 @@
 package com.elkenany.wafer.entities
 
+import com.elkenany.wafer.utilities.GenericRecyclerEntity
 import com.squareup.moshi.Json
 
 data class AboutUsData(
@@ -12,12 +13,10 @@ data class SponsersListData(
 )
 
 data class LogosAndBannersData(
-    val id: Long?,
+    override val id: String,
     val link: String?,
     val image: String?,
-    @Json(name = "company_id")
-    val companyId: Long?,
-    @Json(name = "company_name")
-    val companyName: String?,
+    @Json(name = "company_id") val companyId: Long?,
+    @Json(name = "company_name") val companyName: String?,
     val type: String?,
-)
+) : GenericRecyclerEntity
